@@ -1,0 +1,14 @@
+public Member {
+
+	private String id;
+	private String password;
+}
+
+public Main {
+	public static void main() {
+		List<Member> list = new ArrayList<>();
+
+
+	//Map<String, String> map = new HashMap<>();
+		
+		List<Member> member = new ArrayList<>();

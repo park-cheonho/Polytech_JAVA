@@ -1,0 +1,14 @@
+/.metadata/
+Board/.classpath
+Board/.project
+Board/.settings/
+Board-DB/.classpath
+Board-DB/.project
+Board-DB/.settings/
+*.classpath
+*.project
+jarCalendar/.settings/
+jarCalendar/doc/
+JAVA/.metadata/
+JAVA/.settings/
+JAVA/doc/
