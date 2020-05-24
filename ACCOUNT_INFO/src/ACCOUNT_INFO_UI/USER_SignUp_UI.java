@@ -10,12 +10,15 @@ public class USER_SignUp_UI extends USER_InputOutput_UI{
 		
 		String id = scanStr("등록할 아이디를 입력하세요 : ");
 		String password = scanStr("등록할 비밀번호를 입력하세요 : ");		
+		String name = scanStr("본인의 성함을 입력하세요 : ");		
 	
 		/////////////////////////////////////////////////////
-		// 메모리 or file or DB에 게시물을 저장하는 서비스
+		// DB에 아이디, 비밀번호, 이름을 저장하는 서비스
 		USER_VO signup = new USER_VO();
 		signup.setId(id);
 		signup.setPwd(password);
+		signup.setName(name);
+		
 
 		usersService.signup(signup);
 		/////////////////////////////////////////////////////

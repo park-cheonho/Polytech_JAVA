@@ -9,10 +9,10 @@ public class ACCOUNT_UI extends ACCOUNT_InputOutput_UI{
 		System.out.println("\t1. 입금");
 		System.out.println("\t2. 출금");
 		System.out.println("\t3. 계좌이체(송금)");
-		System.out.println("\t4. 내 전체 계좌 조회");
-		System.out.println("\t5. 은행별 계좌조회");
-		System.out.println("\t6. 내 계좌 번호로 계좌 조회");
-		System.out.println("\t7. 계좌 별명 만들기");
+		System.out.println("\t4. 내 계좌 전부 조회하기");
+		System.out.println("\t5. 은행으로 내 계좌 조회하기");
+		System.out.println("\t6. 계좌 번호로 내 계좌 조회하기");
+		System.out.println("\t7. 계좌 별명 수정하기");
 		System.out.println("\t8. 계좌등록");
 		System.out.println("\t9. 계좌삭제");
 		System.out.println("\t0. 프로그램 종료");
@@ -34,7 +34,7 @@ public class ACCOUNT_UI extends ACCOUNT_InputOutput_UI{
 				ui = new ACCOUNT_Withdraw_UI();
 				break;
 			case 3:
-				ui = new ACCOUNT_Remittance_UI();
+				ui = new ACCOUNT_Transfer_UI();
 				break;
 			case 4:
 				ui = new ACCOUNT_SelectAll_UI();

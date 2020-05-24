@@ -8,11 +8,14 @@ import ACCOUNT_INFO_SERVICE.ACCOUNT_SERVICE_FACTORY;
 public abstract class ACCOUNT_InputOutput_UI implements I_ACCOUNT_Execute_UI {
 
 	private Scanner sc;
-	protected ACCOUNT_SERVICE usersService;
+	protected ACCOUNT_SERVICE accountService;
+	//protected String userId;
+	//protected String userName;
+
 
 	public ACCOUNT_InputOutput_UI() {
 		sc = new Scanner(System.in);
-		usersService = ACCOUNT_SERVICE_FACTORY.getACCOUNT_SERVICE();
+		accountService = ACCOUNT_SERVICE_FACTORY.getACCOUNT_SERVICE();
 	}
 	
 	protected int scanInt(String msg) {

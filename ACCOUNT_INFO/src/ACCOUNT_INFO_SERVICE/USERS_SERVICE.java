@@ -17,10 +17,10 @@ public class USERS_SERVICE {
 		return user;
 	}
 	
-	public USER_VO signup(USER_VO signup) {
+	public void signup(USER_VO signup) {
 		
 		userDAO.signup(signup);
-		return signup;
+		//return signup;
 	}
 	
 }
