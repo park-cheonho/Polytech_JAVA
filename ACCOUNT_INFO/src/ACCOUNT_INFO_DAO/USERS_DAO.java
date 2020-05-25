@@ -72,9 +72,10 @@ public class USERS_DAO {
 				
 				//int seq = rs.getInt("SEQ");
 				String name = rs.getString("NAME");
+				String idid = rs.getString("ID");
 				String reg_Date = rs.getString("REG_DATE");
 				
-				user = new USER_VO(name,id,password,reg_Date);
+				user = new USER_VO(name,idid,password,reg_Date);
 			}
 			
 		} catch (Exception e) {
@@ -84,6 +85,47 @@ public class USERS_DAO {
 		}
 		
 		return user;
+	}
+
+	public String checkId(String id) {
+
+		String munbok = null;
+		
+		try {
+			conn = new ConnectionFactory().getConnection();
+			
+			StringBuilder sql = new StringBuilder();
+			
+			sql.append("SELECT ID ");
+			sql.append(" FROM USERS ");
+			sql.append(" WHERE ID = ? ");
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			//String id = login.getId();
+			//String pwd = login.getPwd();
+			
+			pstmt.setString(1, id);
+			//pstmt.setString(2, password);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				//int seq = rs.getInt("SEQ");
+				//String id = rs.getString("NAME");
+				//String reg_Date = rs.getString("REG_DATE");
+				
+				munbok = rs.getString("ID");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(conn, pstmt);
+		}
+		
+		return munbok;
+	
 	}
 		
 }

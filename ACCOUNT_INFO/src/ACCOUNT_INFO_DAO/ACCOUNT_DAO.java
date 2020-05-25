@@ -3,6 +3,7 @@ package ACCOUNT_INFO_DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -184,6 +185,50 @@ public class ACCOUNT_DAO {
 
 		return list;
 	}
+	
+	/**
+	 * 계좌이체에서 계좌 학인하는 기능
+	 */ 
+	
+	public ACCOUNT_VO selectAccountByNumOnlyOne(String account_number) {
+
+		ACCOUNT_VO vo = null;
+		try {
+			conn = new ConnectionFactory().getConnection();
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * ");
+			sql.append("  from ACCOUNT ");
+			sql.append("  where account_number = ? and name = ?");
+
+			pstmt = conn.prepareStatement(sql.toString());
+			String name = USER_Login_UI.loginUserName;
+			pstmt.setString(1, account_number);
+			pstmt.setString(2, name);
+
+			ResultSet rs = pstmt.executeQuery(); 
+			if(rs.next()) {
+
+				int balance = rs.getInt("balance");
+				String id = rs.getString("id");
+				name = rs.getString("name");
+				account_number = rs.getString("account_number");
+				String bank_code = rs.getString("bank_code");
+				String bank_name = rs.getString("bank_name");
+				String nick_name = rs.getString("nickname");
+
+				vo = new ACCOUNT_VO(name, id, account_number, balance, bank_code, bank_name, nick_name );
+			}
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCClose.close(conn, pstmt);
+		}
+
+		return vo;
+	}
 
 	/**
 	 * 입력한 은행의  계좌를 조회하는 기능
@@ -317,7 +362,7 @@ public class ACCOUNT_DAO {
 			sql.append(" UPDATE ACCOUNT SET ");
 			sql.append(" BALANCE = BALANCE - ?  ");
 			sql.append(" WHERE ACCOUNT_NUMBER = ? and BANK_NAME = ? ");
-
+			
 
 			pstmt = conn.prepareStatement(sql.toString());
 
@@ -334,7 +379,9 @@ public class ACCOUNT_DAO {
 
 			pstmt.executeUpdate();
 
-		} catch (Exception e) {
+		} catch (SQLIntegrityConstraintViolationException SQLE) {
+			System.out.println("출금 금액이 잔고보다 많습니다.");
+		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			JDBCClose.close(conn, pstmt);
@@ -379,15 +426,29 @@ public class ACCOUNT_DAO {
 
 			conn.commit();
 			System.out.println("계좌이체를 완료했습니다");
-		} catch(SQLIntegrityConstraintViolationException se) {
-			System.out.println("잔액이 부족합니다");
+		} catch (SQLIntegrityConstraintViolationException SQLE) {
+			System.out.println("출금 금액이 잔고보다 많습니다.");
 		} catch(Exception e) {
-			//conn.rollback();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		} finally {
-			//conn.setAutoCommit(false);
+			try {
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			JDBCClose.close(conn, pstmt);
 
 		}
+	}
+	public void selectAccountOne(String deposit_where, String account_number) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -22,5 +22,12 @@ public class USERS_SERVICE {
 		userDAO.signup(signup);
 		//return signup;
 	}
+
+	public String checkId(String id) {
+
+		return userDAO.checkId(id);
+
+		
+	}
 	
 }

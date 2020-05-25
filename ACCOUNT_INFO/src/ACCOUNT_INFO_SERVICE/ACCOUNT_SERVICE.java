@@ -62,6 +62,14 @@ public class ACCOUNT_SERVICE {
 		accountDAO.accountTransfer(withdraw_where,money,deposit_where);
 		
 	}
+	public void selectAccountOne(String deposit_where, String account_number) {
+		accountDAO.selectAccountOne(deposit_where,account_number);
+	}
+	
+	public ACCOUNT_VO selectAccountByNumOnlyOne(String account_number) {
+			return accountDAO.selectAccountByNumOnlyOne(account_number);
+
+	}
 
 
 }
