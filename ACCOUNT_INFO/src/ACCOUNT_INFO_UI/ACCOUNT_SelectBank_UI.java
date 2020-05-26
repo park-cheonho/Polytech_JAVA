@@ -18,7 +18,7 @@ public class ACCOUNT_SelectBank_UI extends ACCOUNT_InputOutput_UI{
 		//////////////////////////////////////////////
 
 		System.out.println("--------------------------------------------------");
-		System.out.println("예금주\t아이디\t계좌번호\t\t은행코드\t잔액\t은행명");
+		System.out.println("예금주\t아이디\t계좌번호\t\t은행코드\t잔액\t은행명\t별칭");
 		System.out.println("--------------------------------------------------");
 		if(list.isEmpty()) {
 			System.out.println("\t등록된 계좌가 없습니다");
@@ -26,7 +26,7 @@ public class ACCOUNT_SelectBank_UI extends ACCOUNT_InputOutput_UI{
 			for(ACCOUNT_VO board : list) {
 				System.out.println(board.getName() + "\t" + board.getId() + "\t"
 						+ board.getAccount_number() + "\t\t" + board.getBank_code() 
-						+ "\t" + (Integer.toString(board.getBalance())) + "\t" + board.getBank_name());
+						+ "\t" + (Integer.toString(board.getBalance())) + "\t" + board.getBank_name()+ "\t" + board.getNick_name());
 			}
 		}
 		System.out.println("--------------------------------------------------");

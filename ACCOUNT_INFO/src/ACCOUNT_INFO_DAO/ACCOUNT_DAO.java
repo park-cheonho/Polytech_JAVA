@@ -187,7 +187,7 @@ public class ACCOUNT_DAO {
 	}
 	
 	/**
-	 * 계좌이체에서 계좌 학인하는 기능
+	 * 계좌이체에서 계좌 확인하는 기능
 	 */ 
 	
 	public ACCOUNT_VO selectAccountByNumOnlyOne(String account_number) {
@@ -285,10 +285,12 @@ public class ACCOUNT_DAO {
 
 		try {
 			conn = new ConnectionFactory().getConnection();
-
+			
+			conn.setAutoCommit(false);
+			
 			StringBuilder sql = new StringBuilder();
-			sql.append("update ACCOUNT ");
-			sql.append(" set NICKNAME = ?  ");
+			sql.append("UPDATE ACCOUNT ");
+			sql.append(" SET NICKNAME = ? ");
 			sql.append(" where ID = ? and ACCOUNT_NUMBER = ? ");
 
 
@@ -298,13 +300,13 @@ public class ACCOUNT_DAO {
 			String id = USER_Login_UI.loginUserId;
 			String account_number = account_nickname.getAccount_number();
 
-			//String name = signup.getName();
 			pstmt.setString(1, nick_name);
 			pstmt.setString(2, id);
 			pstmt.setString(3, account_number);
 
 
 			pstmt.executeUpdate();
+			conn.commit();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -319,7 +321,9 @@ public class ACCOUNT_DAO {
 	public void balanceDeposit(ACCOUNT_VO deposit_account) {
 		try {
 			conn = new ConnectionFactory().getConnection();
-
+			
+			conn.setAutoCommit(false);
+			
 			StringBuilder sql = new StringBuilder();
 			sql.append(" UPDATE ACCOUNT SET ");
 			sql.append(" BALANCE = BALANCE + ?  ");
@@ -340,6 +344,7 @@ public class ACCOUNT_DAO {
 
 
 			pstmt.executeUpdate();
+			conn.commit();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -357,6 +362,8 @@ public class ACCOUNT_DAO {
 
 		try {
 			conn = new ConnectionFactory().getConnection();
+
+			conn.setAutoCommit(false);
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(" UPDATE ACCOUNT SET ");
@@ -378,13 +385,16 @@ public class ACCOUNT_DAO {
 
 
 			pstmt.executeUpdate();
-
+			conn.commit();
+			
+			System.out.println(bank_name + "의 " + account_number + "에서" + withdrawBalrance + "를 출금합니다.");
 		} catch (SQLIntegrityConstraintViolationException SQLE) {
 			System.out.println("출금 금액이 잔고보다 많습니다.");
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			JDBCClose.close(conn, pstmt);
+			
 		}	
 
 	}

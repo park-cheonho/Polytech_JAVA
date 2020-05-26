@@ -34,7 +34,7 @@ public class ACCOUNT_Withdraw_UI extends ACCOUNT_InputOutput_UI{
 				accountService.balanceWithdraw(withdraw_account);
 				/////////////////////////////////////////////////////
 
-				System.out.println(bank_name + "의 " + account_number + "로" + withdrawBalrance + "를 입금합니다.");
+				//System.out.println(bank_name + "의 " + account_number + "에서" + withdrawBalrance + "를 출금합니다.");
 				break;
 			}
 

@@ -15,9 +15,9 @@ public class ACCOUNT_AccountAlias_UI extends ACCOUNT_InputOutput_UI{
 		ACCOUNT_VO account_nickname = new ACCOUNT_VO();
 		
 		account_nickname.setNick_name(nick_name);
-		
+		account_nickname.setAccount_number(account_number);
+
 		accountService.account_nickname_change(account_nickname);
-		
 		
 		/////////////////////////////////////////////////////
 		
