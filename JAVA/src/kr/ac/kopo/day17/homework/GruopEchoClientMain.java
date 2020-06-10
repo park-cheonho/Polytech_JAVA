@@ -34,7 +34,6 @@ public class GruopEchoClientMain {
 			// 서버에 전송할 메세지 키보드로 입력 받는 객체 필요
 			BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
 
-
 			// 키보드로 입력받은 메세지를 서버에 전송할 객체
 			OutputStream os = socket.getOutputStream();
 			OutputStreamWriter osw = new OutputStreamWriter(os);
