@@ -17,7 +17,8 @@ class Account {
 	public synchronized void deposit(String name) {
 		
 		notifyAll();
-		money = (r.nextInt(10) + 1) * 1000;
+		//money = (r.nextInt(10) + 1) * 1000;
+		money = (int)(Math.random()*9000) + 1000;
 		System.out.println(name + " 손님이" + money + " 원 입금 하셨습니다.");
 		balance += money;
 		System.out.println("현재 잔액은 " + balance + "원입니다.");
@@ -33,7 +34,8 @@ class Account {
 	public synchronized void withdraw(String name) {
 		
 		notifyAll();
-		money = (r.nextInt(10) + 1) * 1000;
+		//money = (r.nextInt(10) + 1) * 1000;
+		money = (int)(Math.random()*9000) + 1000;
 		if (balance - money < 0 && balance < money) {
 			System.out.println(name + "손님의 출금금액 : " + money + " 원 => 잔액이 부족하여 출금을 할 수 없습니다. 현재 최대 출금 가능 금액 : " + balance);
 		}else {
@@ -57,14 +59,13 @@ class Users extends Thread {
 	private Account account;
 
 	public Users(String name, Account account) {
-
 		this.name = name;
 		this.account = account;
 	}
 
 	@Override
 	public void run() {
-		for(int i = 0; i <=5; i++) {
+		for(int i = 0; i < 5; i++) {
 			account.deposit(name);
 			account.withdraw(name);
 		}
