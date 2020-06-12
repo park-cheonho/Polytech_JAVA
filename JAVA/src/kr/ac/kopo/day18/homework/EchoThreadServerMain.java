@@ -1,4 +1,4 @@
-package kr.ac.kopo.day17.network;
+package kr.ac.kopo.day18.homework;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,7 +67,7 @@ public class EchoThreadServerMain {
 		System.out.println("EchoServer is working!!");
 		
 		try {
-			ServerSocket server = new ServerSocket(11005);
+			ServerSocket server = new ServerSocket(10001);
 			
 			while(true) {
 			Socket client = server.accept();
