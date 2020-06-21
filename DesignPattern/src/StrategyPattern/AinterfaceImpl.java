@@ -1,4 +1,4 @@
-package test;
+package StrategyPattern;
 
 public class AinterfaceImpl implements Ainterface{
 

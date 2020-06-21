@@ -1,6 +1,6 @@
-package test;
+package StrategyPattern;
 
-public class Knife implements Weapon {
+public class Ax implements Weapon {
 
 	@Override
 	public void attck() {

@@ -1,4 +1,4 @@
-package test;
+package StrategyPattern;
 
 public interface Weapon {
 
